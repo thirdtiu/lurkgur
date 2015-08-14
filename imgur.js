@@ -2,7 +2,7 @@ var Imag = React.createClass({
     render: function(){
         return(
             <div className="imag">
-                <h2 className="title">{this.props.title}</h2>
+                <h2 className="title">{this.props.id} - {this.props.title}</h2>
                 <a target="_blank" href={this.props.link}>{this.props.link}</a>
             </div>
         )
@@ -12,7 +12,7 @@ var ImageList = React.createClass({
     render: function(){
         var imageNodes = this.props.data.map(function (img) {
             return(
-                <Imag title={img.title} link={img.link} />
+                <Imag title={img.title} link={img.link} id={img.id} />
             );
         });
         
