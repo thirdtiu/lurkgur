@@ -3,24 +3,22 @@ var Imag = React.createClass({
         return(
             <div className="imag">
                 <h2 className="title">{this.props.title}</h2>
-                <p>{this.props.link}</p>
+                <a target="_blank" href={this.props.link}>{this.props.link}</a>
             </div>
         )
     }
 });
 var ImageList = React.createClass({
     render: function(){
-        // var imageNodes = this.props.data.map(function (img) {
-        //     return(
-        //         <Imag title={img.title} link={img.link} />
-        //     );
-        // });
+        var imageNodes = this.props.data.map(function (img) {
+            return(
+                <Imag title={img.title} link={img.link} />
+            );
+        });
         
-        var parsedData = JSON.parse(this.props.data);
-
         return(
             <div className="imageList">
-                {parsedData}
+                {imageNodes}
             </div>
         )
     }
@@ -37,7 +35,7 @@ var Imgur = React.createClass({
                 Accept: 'application/json'
             },
             success: function(data){
-                this.setState({data: data});
+                this.setState({data: data.data});
             }.bind(this),
             error: function(xhr, status, err){
                 console.error(this.props.url, status, err.toString());
